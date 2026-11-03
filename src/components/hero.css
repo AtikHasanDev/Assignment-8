@@ -1,0 +1,202 @@
+.hero {
+  margin-top: 30px;
+  background: #1c2932;
+  border: 1px solid #26343e;
+  border-radius: 9px;
+  overflow: hidden;
+  position: relative;
+}
+.hero-slide {
+  display: grid;
+  grid-template-columns: 1.18fr 1fr;
+  min-height: 520px;
+}
+.hero-copy {
+  padding: 48px 42px 76px;
+}
+.hero-copy .eyebrow {
+  margin-bottom: 36px;
+}
+.hero-description {
+  max-width: 380px;
+  color: #adb7c0;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-block: 34px 32px;
+}
+.hero-art {
+  background: #293743;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero-orbit {
+  position: absolute;
+  width: 370px;
+  height: 370px;
+  background: #3b5158;
+  opacity: 0.6;
+  border-radius: 50%;
+  top: 40px;
+}
+.cover-stack {
+  position: relative;
+  width: 100%;
+  height: 330px;
+}
+.stack-book {
+  position: absolute;
+  width: 165px;
+  height: 248px;
+  object-fit: cover;
+  box-shadow: 5px 16px 25px #0002;
+  top: 20px;
+  left: 50%;
+}
+.stack-book-0 {
+  transform: translateX(-104%) rotate(16deg);
+  z-index: 2;
+  top: 65px;
+}
+.stack-book-1 {
+  transform: translateX(-30%);
+  z-index: 3;
+}
+.stack-book-2 {
+  transform: translateX(24%) rotate(-12deg);
+  z-index: 1;
+}
+.issue-label {
+  position: absolute;
+  bottom: 50px;
+  font-size: 10px;
+  color: var(--lime);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.hero-controls {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  position: absolute;
+  bottom: 24px;
+  left: 42px;
+  z-index: 2;
+}
+.hero-controls > span {
+  font-size: 8px;
+  text-transform: uppercase;
+  color: #bdc7ad;
+}
+.slide-dots {
+  display: flex;
+  gap: 5px;
+}
+.slide-dots button {
+  width: 22px;
+  height: 24px;
+  position: relative;
+}
+.slide-dots button::after {
+  content: "";
+  position: absolute;
+  top: 11px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #65716e;
+}
+.slide-dots button[aria-current]::after {
+  background: var(--lime);
+}
+.slide-arrows {
+  display: flex;
+  gap: 6px;
+}
+.slide-arrows button {
+  width: 26px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+}
+@media (max-width: 1100px) {
+  .hero-slide {
+    min-height: 460px;
+  }
+  .hero-copy {
+    padding: 36px 30px 80px;
+  }
+  .hero-copy h1 {
+    font-size: 54px;
+  }
+  .stack-book {
+    width: 135px;
+    height: 203px;
+  }
+  .cover-stack {
+    height: 270px;
+  }
+  .hero-orbit {
+    width: 300px;
+    height: 300px;
+  }
+  .hero-controls {
+    left: 30px;
+    gap: 10px;
+  }
+}
+@media (max-width: 760px) {
+  .hero {
+    margin-top: 20px;
+  }
+  .hero-slide {
+    grid-template-columns: 1fr;
+  }
+  .hero-copy {
+    padding: 32px 25px 40px;
+  }
+  .hero-copy h1 {
+    font-size: 48px;
+  }
+  .hero-copy .eyebrow {
+    font-size: 8px;
+    margin-bottom: 26px;
+  }
+  .hero-description {
+    font-size: 13px;
+    margin-block: 25px;
+    max-width: 320px;
+  }
+  .hero-art {
+    min-height: 280px;
+  }
+  .hero-orbit {
+    width: 240px;
+    height: 240px;
+    top: 20px;
+  }
+  .cover-stack {
+    height: 250px;
+  }
+  .stack-book {
+    width: 112px;
+    height: 168px;
+    top: 18px;
+  }
+  .stack-book-0 {
+    top: 48px;
+  }
+  .issue-label {
+    bottom: 22px;
+  }
+  .hero-controls {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    justify-content: center;
+    padding: 8px 15px;
+    background: #1c2932;
+  }
+}
