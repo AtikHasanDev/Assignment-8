@@ -11,10 +11,18 @@ function makeAuth() {
   )
     throw new Error("Authentication is not configured.");
   const client = new MongoClient(process.env.MONGODB_URI);
+  console.log("OAuth diagnostic:", {
+  googleClientId: !!process.env.GOOGLE_CLIENT_ID,
+  googleClientSecret: !!process.env.GOOGLE_CLIENT_SECRET,
+  googleEnabled: !!(
+    process.env.GOOGLE_CLIENT_ID &&
+    process.env.GOOGLE_CLIENT_SECRET
+  ),
+});
   return betterAuth({
     baseURL: process.env.BETTER_AUTH_URL,
     secret: process.env.BETTER_AUTH_SECRET,
-    database: mongodbAdapter(client.db(process.env.MONGODB_DB || "booknook"), {
+    database: mongodbAdapter(client.db(process.env.MONGODB_DB || "Booknook"), {
       client,
     }),
     emailAndPassword: {

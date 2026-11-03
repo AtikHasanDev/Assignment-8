@@ -194,7 +194,7 @@ export function AuthForm({ register = false }: { register?: boolean }) {
         <Button
           variant="outline"
           className="w-full"
-          disabled={busy}
+          disabled={false}
           onClick={google}
         >
           <span className="text-lg font-bold">G</span> Continue with Google
