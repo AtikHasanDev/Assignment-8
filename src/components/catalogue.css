@@ -1,0 +1,235 @@
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+.book-card {
+  background: var(--panel);
+  border: 1px solid #2b3442;
+  padding: 16px;
+  border-radius: 9px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  transition:
+    border-color 0.2s,
+    transform 0.2s;
+}
+.book-card:hover {
+  border-color: #65764e;
+  transform: translateY(-3px);
+}
+.book-art {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #2b3947;
+  border-radius: 5px;
+  padding: 24px;
+  min-height: 260px;
+  position: relative;
+  overflow: hidden;
+}
+.book-art::before {
+  content: "";
+  width: 175px;
+  height: 175px;
+  position: absolute;
+  border-radius: 50%;
+  background: #485544;
+  opacity: 0.55;
+}
+.book-cover {
+  width: 140px;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  position: relative;
+  box-shadow: 8px 6px 16px #0003;
+}
+.book-card-body {
+  padding: 20px 5px 4px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.book-category {
+  font-size: 9px;
+  color: var(--lime);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  font-weight: 700;
+}
+.book-card h3 {
+  font-size: 23px;
+  margin-bottom: 12px;
+}
+.book-author {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.book-detail-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--lime);
+  font-size: 11px;
+  margin-top: auto;
+  padding-block: 8px;
+}
+.book-card-compact {
+  flex-direction: row;
+  gap: 18px;
+  padding: 16px;
+}
+.book-card-compact .book-art {
+  flex: 0 0 34%;
+  padding: 0;
+  min-height: 0;
+  background: none;
+  border-radius: 0;
+  overflow: visible;
+}
+.book-card-compact .book-art::before {
+  display: none;
+}
+.book-card-compact .book-cover {
+  width: 100%;
+}
+.book-card-compact .book-card-body {
+  padding: 8px 0;
+}
+.book-card-compact h3 {
+  font-size: 17px;
+  text-transform: uppercase;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+.book-card-compact .book-author {
+  font-size: 10px;
+}
+.book-card-compact .book-detail-link {
+  color: #f5f4e9;
+}
+.catalogue-search {
+  background: var(--panel);
+  padding: 18px;
+  border-radius: 9px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 14px;
+}
+.search-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-inline: 15px;
+  border: 1px solid #3a4555;
+  border-radius: 6px;
+  background: #283140;
+  color: var(--muted);
+}
+.search-field input {
+  min-width: 0;
+  width: 100%;
+  border: 0;
+  padding-block: 13px;
+  background: none;
+  color: #f5f4e9;
+}
+.catalogue-count {
+  display: flex;
+  justify-content: space-between;
+  margin-block: 26px;
+  color: var(--muted);
+  font-size: 11px;
+  gap: 16px;
+}
+.preview-notice {
+  border-left: 2px solid #788b59;
+  color: #acb99b;
+  padding: 8px 12px;
+  font-size: 11px;
+  margin-bottom: 22px;
+}
+.loading-panel {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  min-height: 240px;
+  color: var(--muted);
+}
+@media (max-width: 1100px) {
+  .book-card-compact {
+    gap: 12px;
+  }
+  .book-card-compact h3 {
+    font-size: 15px;
+  }
+}
+@media (max-width: 900px) {
+  .arrival-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 760px) {
+  .book-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .book-card {
+    padding: 10px;
+  }
+  .book-card h3 {
+    font-size: 18px;
+  }
+  .book-art {
+    min-height: 180px;
+    padding: 16px 8px;
+  }
+  .book-cover {
+    width: 100px;
+  }
+  .book-art::before {
+    width: 120px;
+    height: 120px;
+  }
+  .book-card-compact {
+    flex-direction: column;
+    gap: 0;
+  }
+  .book-card-compact .book-art {
+    flex: 0 0 auto;
+    min-height: 168px;
+    padding: 12px;
+    background: #2b3947;
+  }
+  .book-card-compact .book-cover {
+    width: 95px;
+  }
+  .book-card-compact .book-card-body {
+    padding: 16px 2px 0;
+  }
+  .book-card-compact h3 {
+    font-size: 16px;
+    text-transform: none;
+  }
+  .catalogue-search {
+    grid-template-columns: 1fr 1fr;
+    padding: 14px;
+    gap: 10px;
+  }
+  .search-field {
+    grid-column: 1/-1;
+  }
+  .catalogue-count {
+    font-size: 10px;
+  }
+}
+@media (max-width: 360px) {
+  .book-grid {
+    grid-template-columns: 1fr;
+  }
+}
