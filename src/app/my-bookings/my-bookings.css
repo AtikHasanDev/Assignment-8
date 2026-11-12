@@ -1,0 +1,39 @@
+.studio-bookings { padding-block: clamp(2.5rem, 7vw, 5rem); }
+.studio-bookings > header { margin-bottom: 2rem; }
+.studio-bookings > header p { margin-top: .75rem; }
+.studio-bookings .empty-state .button { margin-top: 1rem; }
+.studio-bookings-loading, .studio-booking-meta {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  color: var(--muted);
+}
+.studio-booking-meta svg { flex: none; }
+.studio-bookings-list { display: grid; gap: 1rem; }
+.studio-booking-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.studio-booking-row h2 { font-size: 1.55rem; overflow-wrap: anywhere; }
+.studio-booking-row h2 a:hover { text-decoration: underline; }
+.studio-booking-meta { margin-top: .5rem; }
+.studio-booking-status-area { display: flex; flex: none; align-items: center; gap: .75rem; }
+.studio-booking-badge {
+  display: inline-flex;
+  border-radius: 999px;
+  padding: .2rem .65rem;
+  font-size: .8rem;
+  font-weight: 700;
+  color: #344153;
+  background: #edf1f7;
+}
+.studio-booking-badge[data-status="Pending"] { color: #664107; background: #fff0c7; }
+.studio-booking-badge[data-status="Confirmed"] { color: #185640; background: #d6f7e4; }
+.studio-booking-badge[data-status="Completed"] { color: #254579; background: #dceaff; }
+.studio-booking-badge[data-status="Cancelled"] { color: #802f35; background: #ffe2e2; }
+@media (max-width: 700px) {
+  .studio-booking-row { flex-direction: column; }
+  .studio-booking-status-area { flex-wrap: wrap; }
+}
