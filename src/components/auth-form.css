@@ -6,20 +6,19 @@
   padding-block: 64px;
   max-width: 1120px;
 }
-.auth-aside h1 {
+.auth-aside h2 {
   font-size: clamp(40px, 4vw, 60px);
   margin-bottom: 28px;
 }
 .auth-illustration {
   color: var(--lime);
-  margin-block: 48px;
-  transform: rotate(-10deg);
+  margin-bottom: 24px;
 }
 .auth-panel {
   padding: 40px;
 }
-.auth-panel h2 {
-  font-size: 36px;
+.auth-panel h1 {
+  font-size: clamp(2rem, 5vw, 2.5rem);
 }
 .auth-divider {
   display: flex;
