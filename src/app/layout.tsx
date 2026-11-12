@@ -4,11 +4,11 @@ import "./globals.css";
 import "./shell.css";
 export const metadata: Metadata = {
   title: {
-    default: "BookNook | A little library for big imaginations",
-    template: "BookNook | %s",
+    default: "StudioSpace | Creative Studio Rentals",
+    template: "%s | StudioSpace",
   },
   description:
-    "Discover your next story. Add, borrow, and share books with the BookNook reading community.",
+    "Discover, host, and book creative workspaces and production studios.",
 };
 export default function RootLayout({
   children,
