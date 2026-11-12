@@ -1,109 +1,61 @@
-# BookNook — Assignment-8
+# StudioSpace
 
-A community library web app for discovering books, sharing your collection, and managing borrowing in one place.
+StudioSpace is a marketplace for discovering, hosting, and reserving creative workspaces by the hour.
 
-**Live site:** https://booknook-atik.vercel.app  
-**API:** https://booknook-api-atik.vercel.app  
-**Backend repository:** https://github.com/AtikHasanDev/Assignment-8-server
+- [Configured Vercel site](https://booknook-atik.vercel.app)
+- [Configured Vercel API](https://booknook-api-atik.vercel.app)
+- [Express server repository](https://github.com/AtikHasanDev/Assignment-8-server)
+
+Verify the Vercel links serve the StudioSpace deployment before submitting.
 
 ## Features
 
-- Browse the catalogue and the six newest additions on the homepage.
-- Search by title or author and filter by Fiction, Science, History, Kids, or Others.
-- Register and sign in with email/password or Google through Better Auth.
-- View protected book details and borrow available copies for 14 days.
-- Track and return your borrowed books.
-- Add books with cover uploads, and edit or delete books you own.
-- Keep copy availability consistent through the backend's MongoDB transactions.
-- Responsive navigation, account pages, loading states, and error feedback.
+- Discover six recent studios on the homepage and filter the catalog by category.
+- View studio photos, host information, amenities, rates, and capacity.
+- Register with email and password or sign in with Google.
+- Publish and edit listings, upload photos through ImgBB, and delete your own studios.
+- Request a time slot, track your bookings, and cancel pending reservations.
+- Receive an availability error when a requested slot overlaps a confirmed booking.
+- Switch between light and dark themes. StudioSpace saves the preference in your browser.
 
-## Technology
+## Tech stack
 
-Next.js 16 App Router, React 19, TypeScript, Tailwind CSS 4, Better Auth, MongoDB, Radix UI, Lucide, Sonner, Swiper, and ImgBB. The separate API uses Express and verifies Better Auth JWTs.
+Next.js App Router, React, TypeScript, Tailwind CSS, Swiper, Sonner, and Lucide. Better Auth uses MongoDB and issues short-lived JWTs. Next.js sends a JWT to the Express API in a cookie for protected requests. MongoDB stores listings and reservations, and ImgBB hosts uploaded photos.
 
 ## Local setup
 
-Use Node.js 22 or newer and pnpm (the project pins pnpm 11.25.0). Use a Node release supported by the pinned package manager. MongoDB must support transactions: use Atlas or a local replica set.
+Use Node.js 22 or later with a version that supports the pinned pnpm release. Use MongoDB Atlas or a local replica set.
 
-```sh
-git clone https://github.com/AtikHasanDev/Assignment-8.git
-cd Assignment-8
-pnpm install
-```
+1. Clone this repository and the server repository into separate directories.
+2. Run `pnpm install --frozen-lockfile` in each repository.
+3. Copy the client’s `.env.example` to `.env.local` and the server’s `.env.example` to `.env`.
+4. Configure MongoDB and the values below. Use the same `MONGODB_DB` in both projects.
+5. Run `pnpm seed:studios` in the server repository to add six demo studios, then start the server with `pnpm dev`.
+6. Run `pnpm dev` in this repository and open [localhost:3000](http://localhost:3000).
 
-Copy `.env.example` to `.env.local`, then configure:
-
-| Variable | Purpose |
+| Client variable | Local value or purpose |
 | --- | --- |
-| `MONGODB_URI` | MongoDB connection string used by authentication |
-| `MONGODB_DB` | Database name; use the same value in the API project |
-| `BETTER_AUTH_URL` | Website origin, locally `http://localhost:3000` |
-| `BETTER_AUTH_SECRET` | Strong random secret for authentication |
-| `GOOGLE_CLIENT_ID` | Google OAuth client ID; optional for email/password sign-in |
-| `GOOGLE_CLIENT_SECRET` | Google OAuth client secret |
-| `NEXT_PUBLIC_API_URL` | API origin, locally `http://localhost:4000` |
-| `IMGBB_API_KEY` | Server-side ImgBB key for cover uploads |
+| `MONGODB_URI` | MongoDB connection URI |
+| `MONGODB_DB` | Database name shared with the server |
+| `BETTER_AUTH_URL` | `http://localhost:3000` |
+| `BETTER_AUTH_SECRET` | A strong random secret |
+| `NEXT_PUBLIC_API_URL` | `http://localhost:4000` |
+| `IMGBB_API_KEY` | ImgBB API key for image uploads |
+| `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` | Google OAuth credentials |
 
-Start the backend using its README, then run:
+For the server, set `CLIENT_ORIGIN` and `AUTH_ISSUER` to `http://localhost:3000`, `AUTH_AUDIENCE` to `booknook-api`, and `JWKS_URL` to `http://localhost:3000/api/auth/jwks`. The JWT audience must match the current Better Auth configuration.
 
-```sh
-pnpm dev
-```
+## Examiner testing
 
-Open http://localhost:3000. The backend repository can be cloned separately; it does not need to be nested inside this project.
+Register an examiner account with an email you control and a password of at least six characters containing an uppercase and a lowercase letter. Then sign in with that email and password. If a dedicated examiner account has been provisioned, include its credentials in the submission notes.
 
-## Commands
+1. Explore a category and open a studio. Request a future time slot, then check that it appears as Pending in My Bookings.
+2. Cancel the request and verify the status changes to Cancelled.
+3. Publish a studio with an HTTPS photo URL or an uploaded image, then edit and delete it from My Studio Listings.
+4. Reload a private route while signed in and check that the page restores the session.
 
-| Command | Purpose |
-| --- | --- |
-| `pnpm dev` | Start the development server |
-| `pnpm build` | Build for production |
-| `pnpm start` | Serve the production build |
-| `pnpm lint` | Run ESLint |
-| `pnpm typecheck` | Generate Next.js types and check TypeScript |
+## Deployment
 
-## Project structure
+Deploy the Next.js client and Express server as separate projects. Set `BETTER_AUTH_URL`, `CLIENT_ORIGIN`, and `AUTH_ISSUER` to the deployed client origin. Set `NEXT_PUBLIC_API_URL` to the deployed API origin and `JWKS_URL` to the client’s `/api/auth/jwks` URL. The Google OAuth redirect URI is the client origin followed by `/api/auth/callback/google`.
 
-```text
-src/app/          Pages, layouts, styles, and authentication/upload routes
-src/components/  Catalogue, book forms, account views, and UI components
-src/lib/         API client, authentication setup, and shared types
-public/          Static assets
-```
-
-Better Auth runs in this Next.js project at `/api/auth/*`. The browser obtains a short-lived JWT and sends it as a bearer token to the separate Express API. Database and provider secrets stay on the server; only `NEXT_PUBLIC_API_URL` is intended for the browser.
-
-## Deploying on Vercel
-
-Deploy this repository as a Next.js project and the backend as a separate Express project. Configure the environment variables above in Vercel before building.
-
-For the current production deployment:
-
-```text
-BETTER_AUTH_URL=https://booknook-atik.vercel.app
-NEXT_PUBLIC_API_URL=https://booknook-api-atik.vercel.app
-```
-
-Set the backend's `CLIENT_ORIGIN` and `AUTH_ISSUER` to the website origin, and `JWKS_URL` to `https://booknook-atik.vercel.app/api/auth/jwks`. Make sure the database permits connections from the deployment environment. Redeploy after changing environment variables, especially the browser-visible API URL.
-
-In the Google OAuth web client, authorize these origins and redirect URLs:
-
-| Environment | JavaScript origin | Redirect URI |
-| --- | --- | --- |
-| Local | `http://localhost:3000` | `http://localhost:3000/api/auth/callback/google` |
-| Production | `https://booknook-atik.vercel.app` | `https://booknook-atik.vercel.app/api/auth/callback/google` |
-
-The redirect URI must match exactly. A responding authentication endpoint does not by itself verify a complete Google login; test the sign-in flow after Google applies configuration changes.
-
-## Catalogue data
-
-Live catalogue data comes from the API. Run the backend's `pnpm seed` command to add eight starter books. The frontend only uses design-preview titles when the API URL is not configured.
-
-## Troubleshooting
-
-- **No books:** check the API URL and `/books` response; seed an empty database from the backend project.
-- **Cannot reach the library:** start both services and check that `CLIENT_ORIGIN` matches the website origin.
-- **Google `redirect_uri_mismatch`:** check the exact redirect URI on the OAuth client used by the deployed credentials.
-- **Borrow or update fails:** check MongoDB replica-set support and API authentication settings.
-
-Never commit `.env.local`, database credentials, or provider secrets.
+Use `pnpm typecheck`, `pnpm lint`, and `pnpm build` to verify the client before deployment.
