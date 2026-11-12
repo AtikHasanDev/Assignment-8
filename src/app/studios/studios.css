@@ -12,7 +12,7 @@
 .studio-filters a[aria-current] {
   border-color: var(--lime);
   background: var(--lime);
-  color: #17211a;
+  color: var(--on-accent);
 }
 .studio-grid {
   display: grid;

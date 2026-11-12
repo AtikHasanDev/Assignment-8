@@ -1,12 +1,13 @@
 "use client";
 
-import { Aperture, LogOut, Menu, UserRound, X } from "lucide-react";
+import { Aperture, LogOut, Menu, Moon, Sun, UserRound, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useRef, useState, type FormEvent } from "react";
+import { useRef, useState, useSyncExternalStore, type FormEvent } from "react";
 import { toast, Toaster } from "sonner";
 import { authClient } from "@/lib/auth-client";
 import { studioCategories } from "@/lib/studios";
+import { getServerTheme, getTheme, setTheme, subscribeToTheme } from "@/lib/theme";
 
 const mainLinks = [
   { href: "/", label: "Home" },
@@ -33,6 +34,7 @@ export function Logo() {
 
 export function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const theme = useSyncExternalStore(subscribeToTheme, getTheme, getServerTheme);
   const router = useRouter();
   const [menu, setMenu] = useState(false);
   const accountMenu = useRef<HTMLDetailsElement>(null);
@@ -70,6 +72,11 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
             {!isPending && !session && <Link href="/register" className="mobile-register" onClick={() => setMenu(false)}>Register</Link>}
           </nav>
           <div className="nav-actions">
+            <button type="button" className="icon-button theme-toggle"
+              aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+              {theme === "dark" ? <Sun size={18} aria-hidden="true" /> : <Moon size={18} aria-hidden="true" />}
+            </button>
             {!isPending && (session ? (
               <details ref={accountMenu} className="account-details"
                 onBlur={(event) => {
@@ -113,7 +120,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
       </header>
       <main id="main-content">{children}</main>
       <SiteFooter />
-      <Toaster richColors theme="dark" position="bottom-right" closeButton />
+      <Toaster richColors theme={theme} position="bottom-right" closeButton />
     </>
   );
 }

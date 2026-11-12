@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SiteShell } from "@/components/site-shell";
+import { themeScript } from "@/lib/theme";
 import "./globals.css";
 import "./shell.css";
 export const metadata: Metadata = {
@@ -16,7 +17,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body>
         <SiteShell>{children}</SiteShell>
       </body>

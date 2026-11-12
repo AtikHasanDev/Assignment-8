@@ -28,13 +28,14 @@
   height: 30px;
   border-radius: 7px;
   background: var(--lime);
-  color: #18241b;
+  color: var(--on-accent);
 }
 .main-nav, .nav-actions { display: flex; align-items: center; gap: clamp(.7rem, 2vw, 1.5rem); }
 .main-nav { color: var(--muted); }
 .main-nav a[aria-current], .main-nav a:hover, .footer-links a:hover { color: var(--lime); }
 .nav-actions { font-size: .9rem; white-space: nowrap; }
 .nav-actions .button { padding: .6rem .9rem; }
+.theme-toggle:hover { background: var(--panel-alt); }
 .account-details { position: relative; }
 .avatar {
   display: grid;
@@ -44,7 +45,7 @@
   overflow: hidden;
   border-radius: 50%;
   background: var(--lime);
-  color: #14201b;
+  color: var(--on-accent);
   cursor: pointer;
 }
 .avatar::-webkit-details-marker { display: none; }
@@ -106,6 +107,9 @@
   .footer-top { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 480px) {
+  .nav-actions { gap: .45rem; }
+  .nav-inner { gap: .5rem; }
+  .nav-actions .icon-button { min-width: 36px; min-height: 40px; }
   .footer-top { grid-template-columns: 1fr; }
   .footer-bottom { flex-wrap: wrap; }
 }
