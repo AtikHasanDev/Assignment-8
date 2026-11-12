@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getStudio, StudioApiError } from "@/lib/studio-api";
 import type { Studio } from "@/lib/studios";
+import { StudioBooking } from "./studio-booking";
 
 const dollars = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -150,6 +151,7 @@ function StudioOverview({ studio }: { studio: Studio }) {
             <div><dt>Capacity</dt><dd>{studio.maxCapacity} people</dd></div>
             <div><dt>Hosted by</dt><dd>{studio.ownerName}</dd></div>
           </dl>
+          <StudioBooking studio={studio} />
         </aside>
       </div>
     </>

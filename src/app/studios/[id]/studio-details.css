@@ -55,3 +55,18 @@
   .studio-detail-columns { grid-template-columns: 1fr; }
   .studio-gallery-photo { aspect-ratio: 4 / 3; }
 }
+
+.studio-booking-trigger { width: 100%; margin-top: 1.25rem; }
+.studio-booking-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(31rem, calc(100% - 2rem));
+  max-height: calc(100dvh - 2rem);
+  overflow: auto;
+  color: inherit;
+}
+.studio-booking-dialog::backdrop { background: #060a13bb; }
+.studio-booking-dialog h2 { font-size: 1.85rem; overflow-wrap: anywhere; }
+.studio-booking-dialog > p { margin: .6rem 0 1.25rem; }
+.studio-booking-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .75rem; }
