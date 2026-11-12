@@ -44,6 +44,7 @@ export function StudioBooking({ studio }: { studio: Studio }) {
       form.reset();
       dialog.current?.close();
       toast.success("Booking requested. Your reservation is pending.");
+      router.push("/my-bookings");
     } catch (reason) {
       const message = reason instanceof Error ? reason.message : "Could not request this booking.";
       setError(message);
