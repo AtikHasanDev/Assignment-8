@@ -1,0 +1,76 @@
+.studio-explore { padding-block: clamp(2.5rem, 7vw, 5.5rem); }
+.studio-explore > header { margin-bottom: 2rem; }
+.studio-explore > header p { margin-top: .75rem; }
+.studio-filters { display: flex; flex-wrap: wrap; gap: .625rem; margin-bottom: 2rem; }
+.studio-filters a {
+  padding: .55rem .95rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: .875rem;
+}
+.studio-filters a:hover { border-color: var(--lime); }
+.studio-filters a[aria-current] {
+  border-color: var(--lime);
+  background: var(--lime);
+  color: #17211a;
+}
+.studio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+.studio-card, .studio-card-placeholder {
+  overflow: hidden;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+.studio-card { display: flex; flex-direction: column; }
+.studio-card-photo {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 10;
+  background: var(--panel-alt);
+  color: var(--muted);
+}
+.studio-card-photo img { width: 100%; height: 100%; object-fit: cover; }
+.studio-category-badge {
+  position: absolute;
+  top: .85rem;
+  left: .85rem;
+  padding: .25rem .65rem;
+  border-radius: 999px;
+  background: #111722e8;
+  color: #f5f4e9;
+  font-size: .75rem;
+  font-weight: 700;
+}
+.studio-card-content { display: flex; flex: 1; flex-direction: column; padding: 1.125rem; }
+.studio-card-row { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
+.studio-card-row h2 { font-size: 1.4rem; overflow-wrap: anywhere; }
+.studio-rating, .studio-location { display: flex; align-items: center; gap: .4rem; }
+.studio-rating { font-size: .8rem; color: var(--lime); white-space: nowrap; }
+.studio-location { margin: .55rem 0 1.25rem; color: var(--muted); }
+.studio-location svg { flex: none; }
+.studio-card-bottom { margin-top: auto; flex-wrap: wrap; }
+.studio-card-bottom strong { font-size: 1.2rem; }
+.studio-card-bottom .button { padding: .45rem .75rem; }
+.studio-card-placeholder {
+  min-height: 18rem;
+  background: linear-gradient(110deg, var(--panel) 25%, var(--panel-alt) 45%, var(--panel) 65%);
+  background-size: 250% 100%;
+  animation: studio-skeleton 1.6s ease-in-out infinite;
+}
+.studio-catalog-message .button { margin-top: 1rem; }
+
+@keyframes studio-skeleton {
+  from { background-position: 100% 0; }
+  to { background-position: 0 0; }
+}
+@media (max-width: 960px) {
+  .studio-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .studio-grid { grid-template-columns: 1fr; }
+}
