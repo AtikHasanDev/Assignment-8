@@ -1,18 +1,15 @@
+import type { Metadata } from "next";
 import { Hero } from "@/components/hero";
-import { Catalogue } from "@/components/catalogue";
-import { HomeSections } from "@/components/home-sections";
-import "./home.css";
-import { Suspense } from "react";
+
+export const metadata: Metadata = {
+  title: { absolute: "StudioSpace | Creative Studio Rentals" },
+  description: "Find and book creative spaces for your next shoot, recording, or workshop.",
+};
+
 export default function Home() {
   return (
-    <div className="container">
+    <div className="container py-6 sm:py-10">
       <Hero />
-      <section className="section">
-        <Suspense fallback={<p role="status">Loading the shelves…</p>}>
-          <Catalogue latest />
-        </Suspense>
-      </section>
-      <HomeSections />
     </div>
   );
 }

@@ -1,119 +1,80 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
+
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { A11y, Keyboard } from "swiper/modules";
-import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import type { Swiper as SwiperInstance } from "swiper";
-import { buttonVariants } from "./ui/button";
+import { A11y, Keyboard } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "./hero.css";
+
 const slides = [
   {
-    title: (
-      <>
-        The library
-        <br />
-        never closes.
-      </>
-    ),
-    text: "For the stories you can’t put down. Discover, borrow, and return — whenever the moment strikes.",
-    label: "Your digital reading space",
-    covers: ["last-garden", "art-of-almost", "quiet-hour"],
+    title: "Find the space for your next shoot.",
+    text: "Book photo studios and film stages by the hour.",
+    photo: "1648740678671-c37d78567ea8", // KOBU Agency
   },
   {
-    title: (
-      <>
-        A new chapter.
-        <br />A different world.
-      </>
-    ),
-    text: "From quiet escapes to big ideas, there’s a story here for every kind of curious mind.",
-    label: "Find your next favourite",
-    covers: ["under-the-sun", "wild-places", "slow-mornings"],
+    title: "Give your next episode a room of its own.",
+    text: "Find podcast rooms with the microphones and lighting you need.",
+    photo: "1764664035176-8e92ff4f128e", // Detail .co
   },
   {
-    title: (
-      <>
-        Good stories
-        <br />
-        are better shared.
-      </>
-    ),
-    text: "Make room on your shelf. Add a book you love and let someone else discover its magic.",
-    label: "A library built together",
-    covers: ["quiet-hour", "last-garden", "under-the-sun"],
+    title: "Make your next recording.",
+    text: "Explore music suites for vocal sessions, demos, and production.",
+    photo: "1634286051376-940ff8525141", // TStudio_lv
   },
 ];
+
 export function Hero() {
   const [swiper, setSwiper] = useState<SwiperInstance>();
   const [active, setActive] = useState(0);
+
   return (
-    <section className="hero" aria-label="Featured stories">
+    <section className="studio-hero" aria-label="Featured studio spaces">
+      <h1 className="sr-only">StudioSpace creative studio rentals</h1>
       <Swiper
         modules={[A11y, Keyboard]}
         keyboard={{ enabled: true, onlyInViewport: true }}
         onSwiper={setSwiper}
-        onSlideChange={(s) => setActive(s.activeIndex)}
+        onSlideChange={(slider) => setActive(slider.activeIndex)}
       >
-        <>
-          {slides.map((slide, index) => (
-            <SwiperSlide key={index}>
-              <div className="hero-slide">
-                <div className="hero-copy">
-                  <p className="eyebrow">BookNook / {slide.label}</p>
-                  <h1>{slide.title}</h1>
-                  <p className="hero-description">{slide.text}</p>
-                  <Link href="/books" className={buttonVariants()}>
-                    Browse books <ArrowUpRight size={16} />
-                  </Link>
-                </div>
-                <div className="hero-art" aria-hidden="true">
-                  <div className="hero-orbit" />
-                  <div className="cover-stack">
-                    {slide.covers.map((cover, i) => (
-                      <img
-                        key={cover}
-                        className={`stack-book stack-book-${i}`}
-                        src={`/covers/${cover}.svg`}
-                        alt=""
-                      />
-                    ))}
-                  </div>
-                  <span className="issue-label">Issue 0{index + 1} / 03</span>
-                </div>
+        {slides.map((slide, index) => (
+          <SwiperSlide key={slide.photo}>
+            <div className="studio-hero-slide" inert={index !== active}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className="studio-hero-photo" alt=""
+                src={`https://images.unsplash.com/photo-${slide.photo}?auto=format&fit=crop&w=1920&q=85`}
+                loading={index === 0 ? "eager" : "lazy"}
+                fetchPriority={index === 0 ? "high" : "auto"} />
+              <div className="studio-hero-copy">
+                <h2>{slide.title}</h2>
+                <p>{slide.text}</p>
+                <Link href="/studios" className="button button-primary">
+                  Explore studios <ArrowUpRight aria-hidden="true" size={17} />
+                </Link>
               </div>
-            </SwiperSlide>
-          ))}
-        </>
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
-      <div className="hero-controls">
-        <div className="slide-dots">
-          {slides.map((_, i) => (
-            <button
-              key={i}
-              aria-label={`Go to slide ${i + 1}`}
-              aria-current={active === i ? "true" : undefined}
-              onClick={() => swiper?.slideTo(i)}
-            />
+      <div className="studio-hero-controls">
+        <div className="studio-hero-dots" aria-label="Choose a slide">
+          {slides.map((slide, index) => (
+            <button key={slide.photo} type="button" aria-label={`Go to slide ${index + 1}`}
+              aria-current={index === active ? "true" : undefined}
+              onClick={() => swiper?.slideTo(index)} />
           ))}
         </div>
-        <span>Slide 0{active + 1} / Featured stories</span>
-        <div className="slide-arrows">
-          <button
-            aria-label="Previous slide"
-            disabled={active === 0}
-            onClick={() => swiper?.slidePrev()}
-          >
-            <ChevronLeft size={16} />
+        <div className="studio-hero-arrows">
+          <button className="icon-button" type="button" aria-label="Previous slide"
+            disabled={active === 0} onClick={() => swiper?.slidePrev()}>
+            <ChevronLeft aria-hidden="true" size={20} />
           </button>
-          <button
-            aria-label="Next slide"
-            disabled={active === 2}
-            onClick={() => swiper?.slideNext()}
-          >
-            <ChevronRight size={16} />
+          <button className="icon-button" type="button" aria-label="Next slide"
+            disabled={active === slides.length - 1} onClick={() => swiper?.slideNext()}>
+            <ChevronRight aria-hidden="true" size={20} />
           </button>
         </div>
       </div>
