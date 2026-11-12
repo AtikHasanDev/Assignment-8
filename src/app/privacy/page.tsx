@@ -1,49 +1,56 @@
 import type { Metadata } from "next";
-export const metadata: Metadata = { title: "Privacy" };
+
+export const metadata: Metadata = { title: "Privacy and studio terms" };
+
 export default function PrivacyPage() {
   return (
-    <section className="container py-16">
-      <div className="mx-auto max-w-3xl space-y-6">
-        <p className="eyebrow">BookNook</p>
-        <h1 className="text-4xl">Privacy and your data</h1>
+    <div className="container py-16">
+      <article className="mx-auto max-w-3xl space-y-6">
+        <h1>Privacy and studio terms</h1>
         <p className="muted">
-          Updated 2 November 2026. BookNook is a student library project
-          operated by Mahmudul Hassan.
+          StudioSpace is a student project for listing creative spaces and requesting reservations.
         </p>
-        <h2 className="text-2xl">What the library stores</h2>
-        <p>
-          BookNook stores your name, email address, account and session records,
-          books you add, and borrowing records. Email accounts use a password
-          hash. Google sign-in supplies your basic profile, email, and profile
-          picture when available; BookNook does not request access to your Gmail
-          messages, contacts, or Drive files.
-        </p>
-        <h2 className="text-2xl">How this information is used</h2>
-        <p>
-          Account information signs you in and associates books and loans with
-          your account. Session cookies keep you signed in. Your book listings
-          and cover images are public. Your borrowing shelf is available through
-          authenticated access to your own account.
-        </p>
-        <h2 className="text-2xl">Services used</h2>
-        <p>
-          Vercel hosts the application and API, MongoDB Atlas stores application
-          records, Google provides optional sign-in, and imgbb hosts uploaded
-          covers. Covers uploaded to imgbb can be accessed by anyone with their
-          image URL. Please do not upload private or sensitive images.
-        </p>
-        <h2 className="text-2xl">Your choices</h2>
-        <p>
-          You can use email sign-in instead of Google, sign out, and manage
-          books you own. To request account or data removal, contact{" "}
-          <a className="underline" href="mailto:mh4846111@gmail.com">
-            mh4846111@gmail.com
-          </a>
-          . Removing a book listing does not automatically remove its image from
-          imgbb. You can also revoke BookNook access in your Google Account
-          settings.
-        </p>
-      </div>
-    </section>
+
+        <section aria-labelledby="account-data">
+          <h2 id="account-data" className="mb-3 text-2xl">Account and booking data</h2>
+          <p>
+            We store your name, email, account records, and session data to sign you in and
+            connect listings and reservations to your account. Passwords are stored as hashes.
+            If you use Google sign-in, Google shares your basic profile, email, and profile
+            picture when available. Booking records include the studio, requested times, and
+            reservation status. My Bookings shows the reservations tied to your account.
+          </p>
+        </section>
+
+        <section aria-labelledby="public-listings">
+          <h2 id="public-listings" className="mb-3 text-2xl">Public listings and uploaded photos</h2>
+          <p>
+            Studio listings publish the host’s name, photos, location, and listing details.
+            The public catalog excludes the host’s account email. ImgBB stores photos uploaded
+            through the listing form. Anyone with an image URL can view the photo, and deleting
+            a listing does not automatically remove its hosted image.
+          </p>
+        </section>
+
+        <section aria-labelledby="browser-storage">
+          <h2 id="browser-storage" className="mb-3 text-2xl">Cookies and browser storage</h2>
+          <p>
+            StudioSpace uses cookies for sign-in and authenticated API requests. Your browser
+            stores your theme preference and any email saved through the demo newsletter form.
+            You can clear the saved preferences and newsletter email through your browser settings.
+          </p>
+        </section>
+
+        <section id="terms" className="scroll-mt-24" aria-labelledby="studio-terms">
+          <h2 id="studio-terms" className="mb-3 text-2xl">Studio and booking terms</h2>
+          <p>
+            List only spaces you have permission to offer and use photos you have permission
+            to share. Keep listing details, capacity, pricing, and equipment information accurate.
+            A booking request starts as pending. Check its status and confirm access, equipment,
+            and any deposit arrangements with the host before making production plans.
+          </p>
+        </section>
+      </article>
+    </div>
   );
 }

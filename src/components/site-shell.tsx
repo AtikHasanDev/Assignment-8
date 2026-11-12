@@ -181,7 +181,10 @@ function SiteFooter() {
         </div>
         <div className="footer-bottom">
           <span>© {new Date().getFullYear()} StudioSpace. All rights reserved.</span>
-          <Link href="/privacy">Privacy</Link>
+          <div className="flex flex-wrap gap-4">
+            <Link href="/privacy">Privacy</Link>
+            <Link href="/privacy#terms">Terms</Link>
+          </div>
         </div>
       </div>
     </footer>
