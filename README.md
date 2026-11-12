@@ -2,11 +2,10 @@
 
 StudioSpace is a marketplace for discovering, hosting, and reserving creative workspaces by the hour.
 
-- [Configured Vercel site](https://booknook-atik.vercel.app)
-- [Configured Vercel API](https://booknook-api-atik.vercel.app)
-- [Express server repository](https://github.com/AtikHasanDev/Assignment-8-server)
-
-Verify the Vercel links serve the StudioSpace deployment before submitting.
+- [Live StudioSpace site](https://studiospace-atik.vercel.app/)
+- [Frontend repository](https://github.com/AtikHasanDev/Assignment-8)
+- [Backend repository](https://github.com/AtikHasanDev/Assignment-8-server)
+- [Live API](https://booknook-api-atik.vercel.app/api/studios?limit=6)
 
 ## Features
 
