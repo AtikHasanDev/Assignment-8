@@ -164,10 +164,10 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
             </div>
             <div>
               <p className="eyebrow">Say hello</p>
-              <a href="mailto:atikhasan.inbox@gmail.com">atikhasan.inbox@gmail.com</a>
+              <a href="mailto:mh4846111@gmail.com">mh4846111@gmail.com</a>
               <div className="footer-links mt-4">
                 <a
-                  href="https://github.com/AtikHasanDev"
+                  href="https://github.com/MH-git-ui"
                   target="_blank"
                   rel="noreferrer"
                   aria-label="GitHub (opens in a new tab)"
@@ -175,7 +175,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
                   GitHub ↗
                 </a>
                 <a
-                  href="https://github.com/AtikHasanDev/Assignment-8"
+                  href="https://github.com/MH-git-ui/Assignment-8"
                   target="_blank"
                   rel="noreferrer"
                   aria-label="Source code (opens in a new tab)"
