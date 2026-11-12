@@ -14,7 +14,14 @@
   background: var(--panel-alt);
   color: var(--muted);
 }
-.studio-gallery-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.studio-gallery-photo { position: relative; overflow: hidden; }
+.studio-gallery-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .studio-gallery-controls {
   position: absolute;
   bottom: .85rem;
