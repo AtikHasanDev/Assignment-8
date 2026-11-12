@@ -1,0 +1,57 @@
+.studio-detail { padding-block: clamp(2rem, 6vw, 5rem); }
+.studio-detail-back, .studio-detail-location { display: flex; align-items: center; gap: .5rem; }
+.studio-detail-back { width: fit-content; color: var(--muted); margin-bottom: 1.75rem; }
+.studio-detail-back:hover { color: var(--lime); }
+.studio-detail-heading { margin-bottom: 1.5rem; }
+.studio-detail-heading > p:first-child { color: var(--lime); font-weight: 700; }
+.studio-detail-heading h1 { margin: .35rem 0 .5rem; overflow-wrap: anywhere; }
+.studio-detail-location { color: var(--muted); }
+.studio-gallery { position: relative; overflow: hidden; border-radius: 14px; }
+.studio-gallery-photo, .studio-detail-skeleton {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 8;
+  background: var(--panel-alt);
+  color: var(--muted);
+}
+.studio-gallery-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.studio-gallery-controls {
+  position: absolute;
+  bottom: .85rem;
+  right: .85rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .25rem;
+  border-radius: 8px;
+  background: #111722e8;
+  color: #f5f4e9;
+}
+.studio-detail-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 23rem);
+  gap: clamp(1.5rem, 5vw, 4rem);
+  align-items: start;
+  margin-top: 2rem;
+}
+.studio-detail-sections { display: grid; gap: 1.75rem; }
+.studio-detail-sections h2 { font-size: 1.65rem; margin-bottom: .65rem; }
+.studio-overview-copy { white-space: pre-wrap; overflow-wrap: anywhere; }
+.studio-amenities { display: flex; flex-wrap: wrap; gap: .5rem; }
+.studio-amenities li {
+  padding: .25rem .65rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+.studio-detail-summary strong { font-size: 1.6rem; }
+.studio-detail-summary dl { display: grid; gap: .75rem; margin-top: 1rem; }
+.studio-detail-summary dl div { display: flex; justify-content: space-between; gap: 1rem; }
+.studio-detail-summary dt { color: var(--muted); }
+.studio-detail-summary dd { text-align: right; overflow-wrap: anywhere; }
+.studio-detail-skeleton { border-radius: 14px; animation: studio-detail-pulse 1.4s ease-in-out infinite alternate; }
+.studio-detail .empty-state .button { margin-top: 1rem; }
+@keyframes studio-detail-pulse { to { opacity: .55; } }
+@media (max-width: 740px) {
+  .studio-detail-columns { grid-template-columns: 1fr; }
+  .studio-gallery-photo { aspect-ratio: 4 / 3; }
+}
